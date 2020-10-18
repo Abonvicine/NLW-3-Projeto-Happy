@@ -1,0 +1,116 @@
+#page-landing {
+  text-align: center;
+  position:fixed;
+  background: linear-gradient(320.5deg, #29b6d1 0%, #00c7c7 100%);
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+#logo {
+  animation-delay: 50ms;
+}
+
+#container {
+  margin: auto;
+  width: min(90%,112rem);
+}
+
+.location,
+h1,
+.visit p {
+  height: 16vh;
+}
+
+
+.location {
+  animation-delay: 100ms;
+}
+
+.visit a {
+  width: 8rem;
+  height: 8rem;
+  background: #ffd666;
+
+  border: 0;
+  border-radius: 3rem;
+
+  display: flex;
+  align-items: center; /* alinha no eixo x pra alinhar no eixo y */
+  justify-content: center; /* alinha no eixo y pra alinhar no eixo x */
+  margin: 0 auto;
+  transition: background 200ms;
+}
+
+.visit a:hover{
+    background:#96feff;
+
+}
+
+
+/*animações*/
+
+
+main h1 {
+  animation-delay: 150ms;
+  line-height: .88;
+  font-size: clamp(4rem,8vw,8.4rem);
+  margin: clamp(10%,9vh,12%) 0 4rem;
+}
+
+.visit p {
+  animation-delay: 200ms;
+}
+
+
+/*desktop version*/
+
+@media(min-width: 760px) {
+
+  #container{
+    /*shortrange background: image repeat / size */
+    background:url("../images/bg.svg") no-repeat 80% / clamp(30rem,54vw,56rem);
+    padding:5rem 2rem;
+  }
+
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /*reseta as regras CSS na posição inicial */
+  .location, h1, .visit p {
+  height: initial;
+  text-align:initial;
+  }
+
+  .location {
+    text-align: right;
+  }
+
+  /*clippa o tamanho máximo */
+  main h1{
+    font-weight: bold;
+
+    width: min(300px,80%);
+  }
+
+  .visit{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+  }
+
+  .visit p{
+    line-height: 1.2;
+    width: clamp(20rem,20vw,30rem);
+    line-height:1.5;
+  }
+
+  .visit a{
+    margin:initial;
+   
+  }
+}
+

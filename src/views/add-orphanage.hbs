@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Localize um orfanato | Happy</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+  <link rel="stylesheet" href="/CSS/main.css" />
+  <link rel="stylesheet" href="/CSS/sidebar.css" />
+  <link rel="stylesheet" href="/CSS/map.css" />
+  <link rel="stylesheet" href="/CSS/add-orphanage.css" />
+  <link rel="stylesheet" href="/CSS/form.css">
+  <link rel="stylesheet" href="/CSS/animations.css" />
+
+
+  <link rel="icon" href="/images/logo-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,800;0,900;1,600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <div id="create-orphanage">
+    <aside class="animate-right sidebar">
+      <img src="/images/map-marker.svg" alt="Happy Marker">
+      <footer>
+        <button onclick="history.back()">
+          <img src="/images/arrow-back.svg" alt="voltar">
+        </button>
+      </footer>
+    </aside>
+
+    <main class="animate-appear with-sidebar">
+
+      <form action="save-orphanage" method="post" onsubmit="validate(event)">
+        <fieldset>
+          <legend>Dados</legend>
+
+          <div class="map-container">
+
+            <div id="mapid"></div>
+              <input type="hidden" name="lat" value="">
+              <input type="hidden" name="lng" value="">
+            <footer>
+              <a href="#" id="select-point">
+                Clique no mapa para adicionar a localização
+              </a>
+            </footer>
+          </div>
+
+          <div class="input-block">
+            <label for="name">Nome do orfanato</label>
+            <input id="name" name="name" required>
+          </div>
+
+          <div class="input-block">
+            <label for="about">Sobre <span>Máximo de 300 caracteres</span> </label>
+            <textarea id="about" name="about" required></textarea>
+          </div>
+
+          <div class="input-block">
+            <label for="whatsapp">Número do Whatsapp</label>
+            <input id="whatsapp" name="whatsapp" required>
+          </div>
+
+          <div class="input-block images">
+            <label for="images">Fotos</label>
+
+            <div class="images-upload" id="images">
+
+              <div class="new-upload">
+                <input name="images" type="url" placeholder="Cole o link da foto aqui!" required>
+                <span onclick="delete_field(event)">
+                  <img src="/images/red-x.svg" alt="remover">
+                </span>
+              </div>
+
+            </div>
+
+            <button type="button" onclick="add_photo_field()">
+              <img src="/images/plus.svg" alt="add image">
+            </button>
+
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            Visitação
+          </legend>
+
+          <div class="input-block">
+            <label for="instructions">Instruções</label>
+            <input id="instructions" name="instructions" required>
+          </div>
+
+          <div class="input-block">
+            <label for="opened-hours">Horário de Visitação</label>
+            <input id="opened-hours" name="opened-hours" required>
+          </div>
+
+          <div class="input-block">
+            <label for="opened-weekend">Abre aos fins de semana?</label>
+            <input type="hidden" id="opened-weekend" name="opened-weekend" value="1" required>
+          </div>
+
+          <div class="button-select">
+            <button type="button" data-value="1" onclick="Toggle_select(event)" class="active">Sim</button>
+            <button type="button" data-value="0" onclick="Toggle_select(event)">Não</button>
+          </div>
+
+          <button onclick="validate(event)" type="submit" class="primary-button">Cadastrar</button>
+        </fieldset>
+
+      </form>
+
+    </main>
+  </div>
+
+  <script src="/scripts/add-orphanage.js"></script>
+</body>
+
+</html>
+
+<!--Comentários em HTML
+
+    HTML - hypertext markup language
+    linguagem de marcação de Hipertextos
+
+    O servidor tem a função de servir a aplicação par o usuário
+-->

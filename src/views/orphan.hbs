@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{orphanage.name}} | Happy</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+  <link rel="stylesheet" href="/CSS/main.css" />
+  <link rel="stylesheet" href="/CSS/sidebar.css" />
+  <link rel="stylesheet" href="/CSS/orphan.css" />
+  <link rel="stylesheet" href="/CSS/map.css" />
+  <link rel="stylesheet" href="/CSS/animations.css" />
+
+  <link rel="icon" href="/images/logo-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,800;0,900;1,600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <div id="page-orphan">
+    <aside class="animate-right sidebar">
+      <img src="/images/map-marker.svg" alt="Happy Marker">
+      <footer>
+        <button onclick="history.back()">
+          <img src="/images/arrow-back.svg" alt="voltar">
+        </button>
+      </footer>
+    </aside>
+
+    <main class="animate-appear with-sidebar">
+      <div class="orphanage-details">
+        <img src="{{orphanage.firstImage}}" alt="{{orphanage.name}}" />
+
+        <div class="images">
+
+          {{#each orphanages.images}}
+          <button onclick="select_image(event)" class="active" type="button">
+            <img src="{{this}}" alt="{{orphanage.name}}" />
+          </button>
+          {{/each}}
+
+        </div>
+
+        <div class="orphanage-details-content">
+          <h1>{{orphanage.name}}</h1>
+
+          <p>
+            {{orphanage.about}}
+          </p>
+
+          <div class="map-container">
+            <div id="mapid"></div>
+
+            <span hidden data-lat="{{orphanage.lat}}" data-lng="{{orphanage.lng}}">
+            </span>
+
+
+            <footer>
+              <a target="_blank" href="https://maps.google.com/mobile?q={{orphanage.lat}},{{orphanage.lng}}&z=15">Ver
+                rotas no google MAPS</a>
+            </footer>
+          </div>
+
+          <hr>
+
+          <h2>Instruções para visita</h2>
+
+          <p>
+            {{orphanage.instructions}}
+          </p>
+
+          <div class="open-details">
+            <div class="hour">
+              <img src="/images/clock.svg" alt="Horarios" />
+              "{{orphanage.opening_hours}}"
+            </div>
+            {{#if orphanage.open_on_weekends}}
+            <div class="open-on-weekends open">
+              <img src="/images/info.svg" alt="informações" />
+              Atendemos aos finais de semana.
+            </div>
+            {{else}}
+            <div class="open-on-weekends close">
+              <img src="/images/info-red.svg" alt="informações" />
+              Não Atendemos aos finais de semana.
+            </div>
+            {{/if}}
+          </div>
+
+          <a target="_blank" href="http://api.whatsapp.com/send?l=pt_BR&phone{{orphanage.whatsapp}}" type="button"
+            class="primary-button">
+            <img src="/images/whatsapp.svg" alt="Chamar no Whatsapp" />
+            &NonBreakingSpace; Entrar em contato
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/scripts/page-orphan.js"></script>
+</body>
+
+</html>
+
+<!--Comentários em HTML
+
+    HTML - hypertext markup language
+    linguagem de marcação de Hipertextos
+
+    O servidor tem a função de servir a aplicação par o usuário
+-->
